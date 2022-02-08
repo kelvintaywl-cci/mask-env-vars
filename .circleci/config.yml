@@ -13,8 +13,12 @@ jobs:
           command: |
             # should NOT be masked here
             printenv RAMEN
+            
+            # should NOT be masked; we should see output as-is
+            echo "I love Wood ear mushroom pork bones !"
+
           environment:
-            RAMEN: 'Wood ear mushroom pork bones '
+            RAMEN: 'Wood ear mushroom pork bones'
       - run:
           name: Print env var from project
           command: |
@@ -25,4 +29,5 @@ jobs:
             # sanity check
             [ "${PROJECT_RAMEN}" = "chilli sesame oil chopped onions lard" ]
             
+            # should be masked; we should see "I love *****[...]"
             echo "I love chilli sesame oil chopped onions lard !"
