@@ -18,6 +18,7 @@ jobs:
       - run:
           name: Print env var from project
           command: |
+            # NOTE: I have set PROJECT_RAMEN project env var to "chilli sesame oil chopped onions lard"
             # should be masked here
             printenv PROJECT_RAMEN
             
