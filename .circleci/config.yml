@@ -1,0 +1,27 @@
+version: 2.1
+
+# Random values sourced from https://ramenipsum.herokuapp.com/
+
+jobs:
+  build:
+    resource_class: small
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run:
+          name: Print env var from step
+          command: |
+            # should NOT be masked here
+            printenv RAMEN
+          environment:
+            RAMEN: 'Wood ear mushroom pork bones '
+      - run:
+          name: Print env var from project
+          command: |
+            # should be masked here
+            printenv PROJECT_RAMEN
+            
+            # sanity check
+            [ "${PROJECT_RAMEN}" = "chilli sesame oil chopped onions lard" ]
+            
+            echo "I love chilli sesame oil chopped onions lard !"
